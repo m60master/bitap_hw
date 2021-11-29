@@ -98,9 +98,9 @@ int main() {
 	}
 	fclose(input);
 	timer_stop(0);
-	timer_finalize();
 	printf("elapsed time %ld\n",timer_read(0));
 	printf("elapsed time %lf\n",(double)(timer_read(0)/1000000000.));
+	timer_finalize();
 
 	return 0; 
 } 
