@@ -9,7 +9,7 @@ void timer_start(int idx);
 
 void timer_stop(int idx);
 
-double timer_read(int idx);
+long timer_read(int idx);
 
 void timer_reset(int idx);
 

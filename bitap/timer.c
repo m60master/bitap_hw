@@ -4,7 +4,7 @@
 #include <time.h>
 
 struct timer_info {
-  double total_time;
+  long total_time;
   struct timespec start_time;
   int is_running;
 };
@@ -30,11 +30,11 @@ void timer_start(int idx) {
   }
 }
 
-static double diff_with_current_time(struct timespec t) {
+static long diff_with_current_time(struct timespec t) {
   struct timespec end_time;
   clock_gettime(CLOCK_MONOTONIC, &end_time);
   long diff_nsec = (end_time.tv_sec - t.tv_sec) * 1000000000L + (end_time.tv_nsec - t.tv_nsec);
-  return diff_nsec / 1e9;
+  return diff_nsec;
 }
 
 void timer_stop(int idx) {
@@ -44,7 +44,7 @@ void timer_stop(int idx) {
   }
 }
 
-double timer_read(int idx) {
+long timer_read(int idx) {
   return ti[idx].total_time + (ti[idx].is_running ? diff_with_current_time(ti[idx].start_time) : 0);
 }
 
