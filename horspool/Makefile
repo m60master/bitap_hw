@@ -1,21 +1,13 @@
 CC=g++
-CFLAGS=-Wall -Wno-stringop-truncation -O2 -g -D_POSIX_C_SOURCE=199309L
+CFLAGS=-std=c++17
 
-SOURCES=horspool.c timer.c
-TARGETS=$(SOURCES:.c=)
-OBJECTS=$(SOURCES:.c=.o)
-DEPS=$(SOURCES:.c=.d)
+TARGET=horspool
 
-all: $(TARGETS)
+all: $(TARGET)
 
-$(TARGETS): $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $^
-
-%.o: %.c $(DEPS)
-	$(CC) $(CFLAGS) -o $@ -c $<
-
--include ($DEPS)
+$(TARGET):
+	$(CC) $(CFLAGS) $(TARGET).cpp -o $(TARGET) 
 
 clean:
-	rm -rf $(TARGETS) $(OBJECTS) *.o
+	rm -rf $(TARGET) *.o
 
